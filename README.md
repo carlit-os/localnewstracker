@@ -15,3 +15,5 @@ Your app should now be running on [localhost:5000](http://localhost:5000/).
 $ git push heroku
 $ heroku open
 ```
+
+view live at https://localnewstracker.herokuapp.com/
