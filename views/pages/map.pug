@@ -18,18 +18,42 @@ block content
         }).addTo(map);
         
         $.getJSON('/maplayers',function(result){
-            //- $.each(result, function(i, mlayer){
-                //alert(mlayer.name);
-                //addLayer(L.mapbox.featureLayer().loadURL('/mapjson/' + mlayer.name), mlayer.name);
-                //- $.getJSON('/mapjson/' + mlayer.name, function(data) {
-                //-      addLayer(data, mlayer.name ) });
-                //- });
             addLayer(result);
         });
 
         function addLayer(data){
             L.geoJson(data).addTo(map);
-            
+            L.geoJson(data.features, {style: style}).addTo(map);
+            L.geoJson(data, { //layers properties of zip codes
+                style: function (feature) {
+                    return {stroke:false, fillOpacity:0};//no coloring
+                },
+                onEachFeature: function (feature, layer) {
+                    layer.bindPopup(feature.properties.name+'<br>'+feature.properties.newscount+" stories"); //show zip code + story count
+                }
+            }).addTo(map);
+        }
+
+        function style(feature) { //color handler
+        return {
+            fillColor: getColor(feature.properties.newscount), //consider changing to a lookup to generated hashmap
+            weight: 2,
+            opacity: 1,
+            color: 'white',
+            dashArray: '3',
+            fillOpacity: 0.7
+        };
+        }
+
+        function getColor(d) {  //color thresholds
+        return d > 6 ? '#800026' :
+               d > 5  ? '#BD0026' :
+               d > 4  ? '#E31A1C' :
+               d > 3  ? '#FC4E2A' :
+               d > 2   ? '#FD8D3C' :
+               d > 1   ? '#FEB24C' :
+               d > 0   ? '#FED976' :
+                          '#FFEDA0';
         }
   
         //- function addLayer(layer, name) {
