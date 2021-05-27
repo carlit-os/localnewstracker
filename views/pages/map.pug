@@ -18,12 +18,19 @@ block content
         }).addTo(map);
         
         $.getJSON('/maplayers',function(result){
-            $.each(result, function(i, mlayer){
+            //- $.each(result, function(i, mlayer){
                 //alert(mlayer.name);
                 //addLayer(L.mapbox.featureLayer().loadURL('/mapjson/' + mlayer.name), mlayer.name);
-                $.getJSON('/mapjson/' + mlayer.name, function(data) { addLayer(data, mlayer.name ) });
-            });
+                //- $.getJSON('/mapjson/' + mlayer.name, function(data) {
+                //-      addLayer(data, mlayer.name ) });
+                //- });
+            addLayer(result);
         });
+
+        function addLayer(data){
+            L.geoJson(data).addTo(map);
+            
+        }
   
         //- function addLayer(layer, name) {
         //-     var leaf_layer;

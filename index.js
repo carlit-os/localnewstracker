@@ -40,8 +40,12 @@ app.get('/', function(req, res) {
 //routes/index.js
 /* GET layers json data. */
 app.get('/maplayers', function (req, res) {
-  Json.find({},{'name': 1}, function (err, docs) {
-      res.json(docs);
+  Json.find({},{'name': 1}, function (err, docs) { //fetch name of document
+      //res.json(docs);
+      Json.findOne({name:docs[0].name},{},function(err, docs) {  //query it
+        res.json(docs)
+      })
+      
   });
 });
 
