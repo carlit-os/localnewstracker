@@ -5,7 +5,7 @@ var app = express();
 var mongoose = require('mongoose');
 
 // Mongoose connection to MongoDB
-mongoose.connect('mongodb+srv://amoran2800:4oIiFHy8TZyIiWzr@cluster0.pvbev.mongodb.net/denelei?retryWrites=true&w=majority', function (error) {
+mongoose.connect('mongodb+srv://amoran2800:4oIiFHy8TZyIiWzr@cluster0.pvbev.mongodb.net/localnewstracker?retryWrites=true&w=majority', function (error) {
     if (error) {
         console.log(error);
     }
@@ -19,7 +19,7 @@ var JsonSchema = new Schema({
 });
 
 // Mongoose Model definition
-var Json = mongoose.model('JString', JsonSchema, 'layer_collection');
+var Json = mongoose.model('JString', JsonSchema, 'elpaso');
 
 app.set('port', (process.env.PORT || 5000));
 
