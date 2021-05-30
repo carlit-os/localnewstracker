@@ -3,13 +3,13 @@ const Article = require('newspaperjs').Article
 
 
 
-const test = () =>{
+const test = (res) =>{
     // return "pickle rick"
-    Article('https://www.nytimes.com/2017/06/10/us/politics/sessions-senate-russia-election.html')
+    return Article('https://www.nytimes.com/2017/06/10/us/politics/sessions-senate-russia-election.html')
     .then(result=>{
-        //console.log(result);
-        //res.send(result)
-        return result
+        // console.log(result);
+        res.send(result)
+        //resolve(result)
     }).catch(reason=>{
         console.log(reason);  
     })

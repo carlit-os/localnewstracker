@@ -90,10 +90,10 @@ app.get('/test', async function(req,res) {
   // var db = req.db;
   // result = await articles.test()
 
-  result = articles.test()
+  articles.test(res)
   //console.log(result)
-  res.send(result)
-  console.log(result)
+  //res.send(result)
+  //console.log(result)
 
   // console.log(result)
   // res.send(result)
