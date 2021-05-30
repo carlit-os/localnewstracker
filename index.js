@@ -74,24 +74,30 @@ app.get('/mapjson/:name', function (req, res) {
 /* GET Map page. */
 app.get('/map', function(req,res) {
   var db = req.db;
-  const title = articles.test()
-  Json.find({},{}, function(err,docs){
+  
+  articles.test().then((story)=>{
+    Json.find({},{}, function(err,docs){
       res.render('map', {
           "jmap" : docs,
           lat : 40.7848,
           lng : -73.9598,
-          label: title
+          label: story.title
       });
+
   });
+  })  
   
 });
 
 app.get('/test', async function(req,res) {
   // var db = req.db;
-  // result = await articles.test()
-
-  articles.test(res)
-  //console.log(result)
+  
+ 
+  articles.test().then((story)=>{
+    res.send(story.title)
+    console.log(story)
+  })
+  
   //res.send(result)
   //console.log(result)
 
