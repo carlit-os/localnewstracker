@@ -1,6 +1,10 @@
 var express = require('express')
 var app = express();
 
+const articles = require("./article_parse.js")
+const Build = require('newspaperjs').Build;
+const Article = require('newspaperjs').Article
+
 // Mongoose import
 var mongoose = require('mongoose');
 
@@ -47,6 +51,10 @@ app.get('/maplayers', function (req, res) {
       })
       
   });
+
+
+
+
 });
 
 /* GET home page. */
@@ -66,13 +74,47 @@ app.get('/mapjson/:name', function (req, res) {
 /* GET Map page. */
 app.get('/map', function(req,res) {
   var db = req.db;
+  const title = articles.test()
   Json.find({},{}, function(err,docs){
       res.render('map', {
           "jmap" : docs,
           lat : 40.7848,
-          lng : -73.9598
+          lng : -73.9598,
+          label: title
       });
   });
+  
+});
+
+app.get('/test', async function(req,res) {
+  // var db = req.db;
+  // result = await articles.test()
+
+  result = articles.test()
+  //console.log(result)
+  res.send(result)
+  console.log(result)
+
+  // console.log(result)
+  // res.send(result)
+  // Json.find({},{}, function(err,docs){
+  //     res.render('map', {
+  //         "jmap" : docs,
+  //         lat : 40.7848,
+  //         lng : -73.9598,
+  //         label: title
+  //     });
+  // });
+
+  // Article('https://www.nytimes.com/2017/06/10/us/politics/sessions-senate-russia-election.html')
+  // .then(result=>{
+  //   console.log(result);
+  //   res.send(result)
+  // }).catch(reason=>{
+  //   console.log(reason);  
+  // })
+
+
 });
 
 module.exports = app;
