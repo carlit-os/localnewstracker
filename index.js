@@ -75,13 +75,13 @@ app.get('/mapjson/:name', function (req, res) {
 app.get('/map', function(req,res) {
   var db = req.db;
   
-  articles.test().then((story)=>{
+  articles.test().then((stories)=>{
     Json.find({},{}, function(err,docs){
       res.render('map', {
           "jmap" : docs,
           lat : 40.7848,
           lng : -73.9598,
-          "label": story //story.title
+          articles: stories //story.title
       });
 
   });
@@ -112,7 +112,7 @@ app.get('/test', async function(req,res) {
   // }).catch(reason=>{
   //   console.log(reason);
   // })
-  Build.getArticlesUrl('https://www.ktsm.com/local/').then(result=>{
+  Build.getArticlesUrl('https://www.ktsm.com').then(result=>{
     console.log(result);
     res.send(result)
   }).catch(reason=>{

@@ -11,8 +11,7 @@ block content
     script(type='text/javascript').
         const center = [31.77, -106.44] 
         
-        //console.log(`#{label}`)
-        const temp = label
+        //const temp = !{JSON.stringify(articles)} //acess express local and convert to JSON
 
         var map = L.map('map').setView(center, 10);
         L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
