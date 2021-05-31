@@ -21,7 +21,7 @@ const test = () =>{
         
         const town_names = Object.keys(zips_data)
 
-        for await (const link of result){ //parse article
+        result.forEach(link => { //parse article
             Article(link)
             .then(nlp=>{
                 town_names.forEach(name => {
@@ -35,7 +35,7 @@ const test = () =>{
             .catch(reason=>{
                 console.log(reason);
             })  
-        }
+        })
         console.log(zips_set)
 
         
