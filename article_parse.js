@@ -4,14 +4,15 @@ const Article = require('newspaperjs').Article
 
 
 const test = () =>{
-    return Article('https://www.nytimes.com/2017/06/10/us/politics/sessions-senate-russia-election.html')
-    .then(result=>{
-        // console.log(result);
-        //res.send(result)
-        //resolve(result)
+    // Build.getCategoriesUrl('https://www.nytimes.com', ['politics', 'sports', 'technology']).then(categories=>{
+    //     //console.log(categories); 
+    // }).catch(reason=>{
+    //     //console.log(reason);
+    // })
+    return Build.getArticlesUrl('https://www.nytimes.com/pages/politics').then(result=>{
         return result
     }).catch(reason=>{
-        console.log(reason);  
+        console.log(reason)
     })
 }
 
