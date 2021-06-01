@@ -25,12 +25,15 @@ const test = async () =>{
         result.forEach(link => { //parse article
             Article(link)
             .then(nlp=>{
-                const town_match = article_search(nlp,town_names)
-                if(town_match!== null){
-                    zips_set.push(town_match)
-                    console.log(town_match)
-                }
-                console.log("checked story")
+                article_search(nlp,town_names)
+                .then(town_array => {
+                    if(town_array !== null){
+                        zips_set.push(town_array)
+                        console.log(town_array)
+                    }
+                })
+                
+                //console.log("checked story")
             }) 
             .catch(reason=>{
                 console.log(reason);
