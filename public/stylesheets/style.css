@@ -3,8 +3,8 @@ img {
     box-shadow: 0 0 0px;
   }
   html, body { /*sizing options for the map*/
-    height: 80%;
-    width:45%;
+    height: 95%;
+    width:85%;
     overflow: hidden;
     padding: 5%;
   }

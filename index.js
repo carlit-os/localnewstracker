@@ -75,50 +75,34 @@ app.get('/mapjson/:name', function (req, res) {
 app.get('/map', function(req,res) {
   var db = req.db;
   
-  articles.test().then((stories)=>{
+  // articles.test().then((stories)=>{
     Json.find({},{}, function(err,docs){
       res.render('map', {
           "jmap" : docs,
           lat : 40.7848,
           lng : -73.9598,
-          articles: stories //story.title
+          //articles: stories //story.title
       });
 
   });
-  })  
+  // }
+  // )  
   
 });
 
 app.get('/test', async function(req,res) {
   // var db = req.db;
-  
- 
-  // articles.test().then((story)=>{
-  //   res.send(story.title)
-  //   console.log(story)
-  // })
-  
-  // Article('https://www.nytimes.com/2017/06/10/us/politics/sessions-senate-russia-election.html')
-  // .then(result=>{
+
+  // Build.getArticlesUrl('https://www.ktsm.com').then(result=>{
   //   console.log(result);
   //   res.send(result)
   // }).catch(reason=>{
-  //   console.log(reason);  
+  //   console.log(reason)
   // })
 
-  // Build.getCategoriesUrl('https://www.nytimes.com', ['politics', 'sports', 'technology']).then(categories=>{
-  //   console.log(categories); 
-  //   res.send(categories)
-  // }).catch(reason=>{
-  //   console.log(reason);
-  // })
-  Build.getArticlesUrl('https://www.ktsm.com').then(result=>{
-    console.log(result);
-    res.send(result)
-  }).catch(reason=>{
-    console.log(reason)
-  })
-
+  articles.test().then((stories)=>{
+  });
+  
 
 });
 

@@ -1,13 +1,13 @@
 extends layout.pug
 block content
     #map
-    #leg_title 
-        span#leg_items Map Legend
-    #leg
-        each layer, i in jmap
-            //input(id=layer.name)(type='checkbox', checked)
-            span#leg_items #{layer.name}
-            br
+    //- #leg_title 
+    //-     span#leg_items Map Legend
+    //- #leg
+    //-     each layer, i in jmap
+    //-         //input(id=layer.name)(type='checkbox', checked)
+    //-         span#leg_items #{layer.name}
+    //-         br
     script(type='text/javascript').
         const center = [31.77, -106.44] 
         
@@ -56,6 +56,27 @@ block content
                d > 0   ? '#FED976' :
                           '#FFEDA0';
         }
+
+        var legend = L.control({ position: "bottomleft" });
+
+        legend.onAdd = function(map) {
+            var div = L.DomUtil.create("div", "legend");
+            div.innerHTML += "<h4>News Coverage May 9-10 2021</h4>";
+            div.innerHTML += '<i style="background: #800026"></i><span>More than 6 Stories</span><br>';
+            div.innerHTML += '<i style="background: #BD0026"></i><span>6 Stories</span><br>';
+            div.innerHTML += '<i style="background: #E31A1C"></i><span>5 Stories</span><br>';
+            div.innerHTML += '<i style="background: #FC4E2A"></i><span>4 Stories</span><br>';
+            div.innerHTML += '<i style="background: #FD8D3C"></i><span>3 Stories</span><br>';
+            div.innerHTML += '<i style="background: #FEB24C"></i><span>2 Stories</span><br>';
+            div.innerHTML += '<i style="background: #FED976"></i><span>1 Story</span><br>';
+            div.innerHTML += '<i style="background: #FFEDA0"></i><span>No Stories</span><br>';
+
+            return div;
+        };
+
+        legend.addTo(map);
+
+        
     //- script(type='module')
     //-     include article_parse.js
   

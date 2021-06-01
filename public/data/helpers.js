@@ -1,4 +1,5 @@
 const elpaso_towns_zips = {
+    'central': [79903, 79902, 79901, 79905, 79925, 79906, 79916, 79930],
     'fort bliss': [79906],
     'alameda business': [79905],
     'album park': [79925],
@@ -7,7 +8,6 @@ const elpaso_towns_zips = {
     'buena vista': [79922],
     'carpenter': [79915],
     'castner heights': [79924],
-    'central': [79903, 79902, 79901, 79905, 79925, 79906, 79916, 79930],
     'chamizal': [79905],
     'chihuahuita': [79901, 79922],
     'cielo vista': [79925],
