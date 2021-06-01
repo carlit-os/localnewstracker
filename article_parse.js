@@ -17,30 +17,54 @@ const article_search = async (nlp, town_names) => { //returns matching town or n
     }
 }
 
+const link_handler = async (link_set) => {
+    const town_set = []
+    const town_names = Object.keys(zips_data)
+
+    for (const link of link_set){
+        await Article(link)
+        .then(nlp=>{
+            article_search(nlp,town_names)
+            .then(town_array => {
+                if(town_array !== null){
+                    town_set.push(town_array)
+                    //console.log(town_array)
+                }
+            })
+        }) 
+        .catch(reason=>{
+            console.log(reason);
+        })  
+    }
+
+    // link_set.forEach(link => { //parse article
+    //     Article(link)
+    //     .then(nlp=>{
+    //         article_search(nlp,town_names)
+    //         .then(town_array => {
+    //             if(town_array !== null){
+    //                 town_set.push(town_array)
+    //                 console.log(town_array)
+    //             }
+    //         })
+    //     }) 
+    //     .catch(reason=>{
+    //         console.log(reason);
+    //     })  
+    // })
+
+    return town_set
+}
+
 
 const test = async () =>{
     return Build.getArticlesUrl('https://www.ktsm.com').then(result=>{
-        const zips_set = []
-        const town_names = Object.keys(zips_data)
-        result.forEach(link => { //parse article
-            Article(link)
-            .then(nlp=>{
-                article_search(nlp,town_names)
-                .then(town_array => {
-                    if(town_array !== null){
-                        zips_set.push(town_array)
-                        console.log(town_array)
-                    }
-                })
-                
-                //console.log("checked story")
-            }) 
-            .catch(reason=>{
-                console.log(reason);
-            })  
+        link_handler(result)
+        .then(town_set => {
+            console.log(town_set)
         })
-
-        console.log(zips_set)
+    
+        //console.log(zips_set)
 
         //return articls
     }).catch(reason=>{
