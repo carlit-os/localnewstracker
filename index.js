@@ -93,15 +93,11 @@ app.get('/map', function(req,res) {
 app.get('/test', async function(req,res) {
   // var db = req.db;
 
-  // Build.getArticlesUrl('https://www.ktsm.com').then(result=>{
-  //   console.log(result);
-  //   res.send(result)
-  // }).catch(reason=>{
-  //   console.log(reason)
-  // })
+  const callback = (res, data) => { 
+    res.status(200).send(data)
+  }
 
-  articles.test().then((stories)=>{
-  });
+  articles.test(res, callback);
   
 
 });
