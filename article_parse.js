@@ -38,7 +38,7 @@ const link_handler = async (res, callback, link_set) => {
     .then(nlp_set => {
         Promise.all(nlp_set.map(nlp => article_search(nlp,town_names)))
         .then(town_list => {
-            const result = getFrequency(town_list.filter(x => !!x).flat())
+            const result = getFrequency(town_list.filter(x => !!x).flat()) //filter out undefineds and flatten, then get the freq of each element
             callback(res,result)
         })
     })
