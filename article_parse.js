@@ -44,14 +44,9 @@ const link_handler = async (res, callback, link_set) => {
     })
 }
 
-const town_frequency = async(town_set) => {
-    console.log(town_set)
-}
-
-const test = async (res, callback) =>{
+const town_frequency = async (res, callback) =>{
     const news_link_set = await Build.getArticlesUrl('https://www.ktsm.com');
     link_handler(res, callback, news_link_set)
 }
 
-module.exports.test = test;
 module.exports.town_frequency = town_frequency;

@@ -95,10 +95,9 @@ app.get('/test', async function(req,res) {
 
   const callback = (res, data) => { 
     res.status(200).send(data)
-    parse.town_frequency(data)
   }
 
-  parse.test(res, callback);
+  parse.town_frequency(res, callback);
 });
 
 module.exports = app;
