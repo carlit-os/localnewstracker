@@ -22,26 +22,25 @@ const article_search = async (nlp, town_names) => { //returns matching town or n
 const link_handler = async (res, callback, link_set) => {
     
     const town_names = Object.keys(zips_data)
-
     const town_set = await Promise.all(link_set.map(Article))
     .then(nlp_set => {
         Promise.all(nlp_set.map(nlp => article_search(nlp,town_names)))
         .then(town_list => {
-            const result = town_list.filter(x => !!x)
+            const result = town_list.filter(x => !!x).flat()
             callback(res,result)
         })
     })
 }
 
+const town_frequency = async(town_set) => {
+
+    console.log(town_set)
+}
 
 const test = async (res, callback) =>{
     const news_link_set = await Build.getArticlesUrl('https://www.ktsm.com');
-
-    // console.log(news_link_set)
-
-    const town_list = link_handler(res, callback, news_link_set)
-    console.log(town_list)
-    return town_list
+    link_handler(res, callback, news_link_set)
 }
 
 module.exports.test = test;
+module.exports.town_frequency = town_frequency;

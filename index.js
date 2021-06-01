@@ -1,7 +1,7 @@
 var express = require('express')
 var app = express();
 
-const articles = require("./article_parse.js")
+const parse = require("./article_parse.js")
 const Build = require('newspaperjs').Build;
 //const Article = require('newspaperjs').Article
 
@@ -95,11 +95,10 @@ app.get('/test', async function(req,res) {
 
   const callback = (res, data) => { 
     res.status(200).send(data)
+    parse.town_frequency(data)
   }
 
-  articles.test(res, callback);
-  
-
+  parse.test(res, callback);
 });
 
 module.exports = app;
