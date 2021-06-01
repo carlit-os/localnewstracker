@@ -10,6 +10,7 @@ block content
     //-         br
     script(type='text/javascript').
         const center = [31.77, -106.44] 
+        console.log(!{JSON.stringify(town_frequency)})
         
         //const temp = !{JSON.stringify(articles)} //acess express local and convert to JSON
 
@@ -70,13 +71,12 @@ block content
             div.innerHTML += '<i style="background: #FEB24C"></i><span>2 Stories</span><br>';
             div.innerHTML += '<i style="background: #FED976"></i><span>1 Story</span><br>';
             div.innerHTML += '<i style="background: #FFEDA0"></i><span>No Stories</span><br>';
-
             return div;
         };
 
         legend.addTo(map);
 
-        
+
     //- script(type='module')
     //-     include article_parse.js
   

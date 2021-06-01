@@ -74,19 +74,19 @@ app.get('/mapjson/:name', function (req, res) {
 /* GET Map page. */
 app.get('/map', function(req,res) {
   var db = req.db;
-  
-  // articles.test().then((stories)=>{
+
+  const callback = (res, town_frequency) =>{
     Json.find({},{}, function(err,docs){
       res.render('map', {
           "jmap" : docs,
           lat : 40.7848,
           lng : -73.9598,
-          //articles: stories //story.title
+          town_frequency: town_frequency
       });
+      });
+  }
 
-  });
-  // }
-  // )  
+  parse.town_frequency(res, callback);
   
 });
 
