@@ -3,6 +3,18 @@ const Article = require('newspaperjs').Article
 const zips= require("./public/data/helpers")
 const zips_data = zips.elpaso_towns_zips
 
+const getFrequency = (array) => {
+    const map = {};
+    array.forEach(item => {
+       if(map[item]){
+          map[item]++;
+       }else{
+          map[item] = 1;
+       }
+    });
+    return map;
+ };
+
 const article_search = async (nlp, town_names) => { //returns matching town or null
     const result = []
     for(const name of town_names){
@@ -26,14 +38,13 @@ const link_handler = async (res, callback, link_set) => {
     .then(nlp_set => {
         Promise.all(nlp_set.map(nlp => article_search(nlp,town_names)))
         .then(town_list => {
-            const result = town_list.filter(x => !!x).flat()
+            const result = getFrequency(town_list.filter(x => !!x).flat())
             callback(res,result)
         })
     })
 }
 
 const town_frequency = async(town_set) => {
-
     console.log(town_set)
 }
 
